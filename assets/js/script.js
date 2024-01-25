@@ -16,6 +16,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    /**
+     * We are going to listen for a keydown event which is when the Enter key is pressed and user will submit the answer
+     */
+    document.getElementById("answer-box").addEventListener("keydown", function (event) {   //event is an handler object that has property called key
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    })
+
     runGame("addition");
 });
 
@@ -26,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 function runGame(gameType) {
 
+    // every time the runGame() is called it will set the value to an empty string; 
+    document.getElementById("answer-box").value = ""; //it will empty whatevr was there before                                                  
+    document.getElementById("answer-box").focus(); //cursor focus- make the cursor be in the answer-box as soon as the page is loaded; so the user don't need to click on it or tap
     //created two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
@@ -44,7 +56,6 @@ function runGame(gameType) {
     }
 
 }
-
 
 /**
  * Checks the answer against the first element in the returned calculatedCorrectAnswer array
